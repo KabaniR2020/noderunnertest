@@ -1,0 +1,2086 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>StatBox</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600,700,800&amp;subset=cyrillic-ext" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+<div class="wrapper" id="app">
+
+    <header class="page-header">
+        <div class="container">
+            <div class="page-header__inner">
+                <div class="page-header__navigation">
+                    <div class="navigation">
+                        <button class="navigation__btn" type="button" aria-controls="navigationMenu" aria-expanded="false"
+                                aria-label="Toggle navigation">
+                            <span></span>
+                        </button>
+                        <nav id="navigationMenu" class="navigation__dropdown">
+                            <ul>
+                                <li class="active">
+                                    <a href="#">Account</a>
+                                </li>
+                                <li>
+                                    <a class="active" href="#">Settings</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="link">Price</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#">Contact us</a>
+                                </li>
+                                <li class="split-item">
+                                    <a href="#" class="link">Sing in</a>
+                                    /
+                                    <a href="#">Sing up</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="page-header__logo">
+                    <a class="logo" href="#">
+                        <span>S<span>tat</span></span>
+                        <span>B<span>ox</span></span>
+                    </a>
+                </div>
+                <div class="page-header__search-block">
+                    <form class="search">
+                        <div class="search__btn-dropdown-block">
+                            <button type="button" aria-controls="toggleSearchStats" aria-expanded="false" aria-label="Toggle stats">
+                                <span>PS</span>
+                            </button>
+                            <ul id="toggleSearchStats">
+                                <li>
+                                    <a href="#">WPN</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="active">PS</a>
+                                </li>
+                                <li>
+                                    <a href="#">CH</a>
+                                </li>
+                                <li>
+                                    <a href="#">IP</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="search__input-block">
+                            <input type="text" placeholder="Search for players">
+                            <ul style="display: none;">
+                                <li>
+                                    <a href="#">Search item 1</a>
+                                </li>
+                                <li>
+                                    <a href="#">Search item 2</a>
+                                </li>
+                                <li>
+                                    <a href="#">Search item 3</a>
+                                </li>
+                                <li>
+                                    <a href="#">Search item 4</a>
+                                </li>
+                                <li>
+                                    <a href="#">Search item 5</a>
+                                </li>
+                                <li>
+                                    <a href="#">Search item 6</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="search__submit-block">
+                            <button type="submit">
+                                <span>Send</span>
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="page-header__sign-block">
+                    <div class="sign">
+                        <a href="#">Sign in</a>
+                        /
+                        <a href="#">Sign up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="page-main">
+        <div class="container">
+
+            <div class="heading">
+                <div class="row">
+                    <div class="col --col-find-user --align-items-center">
+                        <div class="find-user">
+                            <div class="find-user__stage">
+                                <span>PS</span>
+                            </div>
+                            <div class="find-user__info">
+                                <div class="find-user__name">Balanolsky187</div>
+                                <div class="find-user__limit">Home limit: 100</div>
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn btn--filter only-device" :class="{'filter-is-open': isOpenFilter }"  @click="isOpenFilter = !isOpenFilter">
+                            <span>Filter</span>
+                            <svg viewBox="0 0 16 14" class="filter">
+                                <path d="M2.267,13H0V11H2.267a2,2,0,0,1,3.465,0H16v2H5.733a2,2,0,0,1-3.466,0Zm7-5H0V6H9.267a2,2,0,0,1,3.465,0H16V8H12.732A2,2,0,0,1,9.268,8Zm-7-5H0V1H2.267A2,2,0,0,1,5.733,1H16V3H5.733A2,2,0,0,1,2.267,3Z"/>
+                            </svg>
+
+                            <svg viewBox="0 0 16 14" class="close">
+                                <path d="M7.2,6.7l-6.5,6L7.2,6.7l-6.5-6L7.2,6.7l6.5-6L7.2,6.7l6.5,6L7.2,6.7z"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="col --col-filter-group" :style="{display: isOpenFilter ? 'block' : 'none'}">
+                        <div class="row">
+                            <div class="col --col-statistic">
+                                <div class="group">
+                                    <div class="group__block">
+                                        <div class="group__title">
+                                            Statistic:
+                                        </div>
+                                        <div class="group__content">
+                                            <div class="tab-group tab-group--small">
+                                                <label tabindex="0">
+                                                    <input type="radio" name="check-tab-default" checked tabindex="-1">
+                                                    <span>Default</span>
+                                                </label>
+                                                <label tabindex="0">
+                                                    <input type="radio" name="check-tab-default" tabindex="-1">
+                                                    <span>Custom</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col --col-group">
+                                <div class="group">
+                                    <dimensions>
+                                        <div class="group__block --limit" slot-scope="{ width, height }" :class="{'group__block--line': height > 55}">
+                                            <div class="group__title">
+                                                limit:
+                                            </div>
+                                            <div class="group__content">
+                                                <div class="switch-btn">
+                                                    <label class="switch-btn__label">
+                                                        <input type="radio" class="switch-btn__input" name="switch-btn-default">
+                                                        <span class="switch-btn__span" data-label="0.7k">10</span>
+                                                    </label>
+                                                    <label class="switch-btn__label">
+                                                        <input type="radio" class="switch-btn__input" name="switch-btn-default">
+                                                        <span class="switch-btn__span" data-label="5.7k">25</span>
+                                                    </label>
+                                                    <label class="switch-btn__label">
+                                                        <input type="radio" class="switch-btn__input" name="switch-btn-default">
+                                                        <span class="switch-btn__span" data-label="0.7k">50</span>
+                                                    </label>
+                                                    <label class="switch-btn__label">
+                                                        <input type="radio" class="switch-btn__input" name="switch-btn-default">
+                                                        <span class="switch-btn__span" data-label="42k">75</span>
+                                                    </label>
+                                                    <label class="switch-btn__label">
+                                                        <input type="radio" class="switch-btn__input" name="switch-btn-default">
+                                                        <span class="switch-btn__span" data-label="311k">100</span>
+                                                    </label>
+                                                    <label class="switch-btn__label">
+                                                        <input type="radio" class="switch-btn__input" name="switch-btn-default">
+                                                        <span class="switch-btn__span" data-label="11k">125</span>
+                                                    </label>
+                                                    <label class="switch-btn__label">
+                                                        <input type="radio" class="switch-btn__input" name="switch-btn-default">
+                                                        <span class="switch-btn__span" data-label="11k">145</span>
+                                                    </label>
+                                                    <label class="switch-btn__label">
+                                                        <input type="radio" class="switch-btn__input" name="switch-btn-default" checked>
+                                                        <span class="switch-btn__span">All</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </dimensions>
+
+                                    <div class="group__block --table-size">
+                                        <div class="group__title">
+                                            Table size:
+                                        </div>
+                                        <div class="group__content">
+                                            <div class="switch-btn">
+                                                <label class="switch-btn__label">
+                                                    <input type="radio" class="switch-btn__input" name="switch-btn-table-size">
+                                                    <span class="switch-btn__span">SH</span>
+                                                </label>
+                                                <label class="switch-btn__label">
+                                                    <input type="radio" class="switch-btn__input" name="switch-btn-table-size">
+                                                    <span class="switch-btn__span">FR</span>
+                                                </label>
+                                                <label class="switch-btn__label">
+                                                    <input type="radio" class="switch-btn__input" name="switch-btn-table-size">
+                                                    <span class="switch-btn__span">HU</span>
+                                                </label>
+                                                <label class="switch-btn__label">
+                                                    <input type="radio" class="switch-btn__input" name="switch-btn-table-size" checked>
+                                                    <span class="switch-btn__span">All</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="group__block --month">
+                                        <div class="group__title">
+                                            Month:
+                                        </div>
+                                        <div class="group__content">
+                                            <div class="switch-btn">
+                                                <label class="switch-btn__label">
+                                                    <input type="radio" class="switch-btn__input" name="switch-btn-month">
+                                                    <span class="switch-btn__span">This</span>
+                                                </label>
+                                                <label class="switch-btn__label">
+                                                    <input type="radio" class="switch-btn__input" name="switch-btn-month">
+                                                    <span class="switch-btn__span">3M</span>
+                                                </label>
+                                                <label class="switch-btn__label">
+                                                    <input type="radio" class="switch-btn__input" name="switch-btn-month">
+                                                    <span class="switch-btn__span">6M</span>
+                                                </label>
+                                                <label class="switch-btn__label">
+                                                    <input type="radio" class="switch-btn__input" name="switch-btn-month">
+                                                    <span class="switch-btn__span">12M</span>
+                                                </label>
+                                                <label class="switch-btn__label">
+                                                    <input type="radio" class="switch-btn__input" name="switch-btn-month" checked>
+                                                    <span class="switch-btn__span">All</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="row">
+                    <div class="col">
+
+                        <div class="card">
+                            <div class="hands">
+                                <div class="hands__info">
+                                    <div>128k</div>
+                                    <div>Hands</div>
+                                </div>
+                                <div class="hands__table">
+                                    <div class="hands__table-col">
+                                        <div class="hands__table-line">
+                                            <span>Net won:</span>
+                                            <span class="text-danger">- $311867</span>
+                                        </div>
+                                        <div class="hands__table-line">
+                                            <span>Ev:</span>
+                                            <span class="text-danger">- $31</span>
+                                        </div>
+                                    </div>
+                                    <div class="hands__table-col">
+                                        <div class="hands__table-line">
+                                            <span class="text-gray">Win Rate:</span>
+                                            <span class="text-danger">- 8.5</span>
+                                        </div>
+                                        <div class="hands__table-line">
+                                            <span class="text-gray">Ev:</span>
+                                            <span class="text-danger">- $31<small>bb/100</small></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card__header">
+                                <div class="card__header-controls" v-if="toggleControls">
+
+                                    <div class="checkbox-group">
+                                        <label class="checkbox-group__label">
+                                            <input type="checkbox" class="checkbox-group__input" v-model="link" value="AllinEv">
+                                            <span class="checkbox-group__span allinEv">AllinEv</span>
+                                        </label>
+                                        <label class="checkbox-group__label">
+                                            <input type="checkbox" class="checkbox-group__input" v-model="link" value="AmountWon">
+                                            <span class="checkbox-group__span netWon">NetWon</span>
+                                        </label>
+                                        <label class="checkbox-group__label">
+                                            <input type="checkbox" class="checkbox-group__input" v-model="link" value="AmountWonAtSd">
+                                            <span class="checkbox-group__span wASd">WASd</span>
+                                        </label>
+                                        <label class="checkbox-group__label">
+                                            <input type="checkbox" class="checkbox-group__input" v-model="link" value="AmountWonWithoutSd">
+                                            <span class="checkbox-group__span wWsd">WWsd</span>
+                                        </label>
+                                    </div>
+
+                                    <div class="switch switch--small">
+                                        <input type="radio" v-model.number="switch_bb100" value="0" class="switch__left-check" id="left-check-graph-setting">
+                                        <input type="radio" v-model.number="switch_bb100" value="1" class="switch__right-check" id="right-check-graph-setting">
+
+                                        <label for="left-check-graph-setting" class="switch__left-label"></label>
+                                        <label for="right-check-graph-setting" class="switch__right-label"></label>
+
+                                        <span class="switch__switcher">
+                                        <span>$</span>
+                                        <span>bb</span>
+                                    </span>
+                                    </div>
+
+                                </div>
+                                <button class="card__btn-settings" :class="{'is-opened': toggleControls}" type="button" @click="toggleControls = !toggleControls">Settings</button>
+                            </div>
+
+                            <div class="card__body">
+                                <div class="chart">
+                                    <v-chart :options="option" :auto-resize="true" class="echarts"></v-chart>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card__header card__header--title-size-large">
+                                <div>Type game</div>
+                                <button class="card__btn-collapse" type="button">Collapse</button>
+                            </div>
+                            <div class="card__body">
+
+                                <div class="grid grid--collapse">
+                                    <table class="grid__table">
+                                        <thead class="grid__table-head">
+                                        <tr>
+                                            <th>&nbsp;</th>
+                                            <th>
+                                                <span>Type</span>
+                                                <span class="sort sort--asc"></span>
+                                            </th>
+                                            <th>
+                                                <span class="only-desktop-inline">Hands</span>
+                                                <span class="only-device-inline">Hnds</span>
+
+                                                <span class="sort sort--desc"></span>
+                                            </th>
+                                            <th>
+                                                <span class="only-desktop-inline">Winnings</span>
+                                                <span class="only-device-inline">WinвЂ™s</span>
+                                                <span class="sort"></span>
+                                            </th>
+                                            <th>
+                                                <span>Win Ev</span>
+                                                <span class="sort"></span>
+                                            </th>
+                                            <th class="text-transform-none">
+                                                <span>bb/<br>100 </span>
+                                                <span class="sort"></span>
+                                            </th>
+                                            <th class="text-transform-none">
+                                                <span>Evbb/<br>100</span>
+                                                <span class="sort"></span></th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody class="grid__table-body">
+                                        <tr :class="{'is-collapse': openID1}">
+                                            <td>
+                                                <button type="button" class="btn-collapse" @click="openID1 = !openID1">Collapse table row</button>
+                                            </td>
+                                            <td>NL25, 9max</td>
+                                            <td>54358</td>
+                                            <td>12475</td>
+                                            <td>12475</td>
+                                            <td>7.3</td>
+                                            <td>7.3</td>
+                                        </tr>
+                                        <tr class="collapse">
+                                            <td colspan="7">
+                                                <div v-if="openID1" class="collapse__wrapper">
+
+                                                    <div class="collapse__left-column">
+                                                        <v-chart :options="optionTable" :auto-resize="true" class="echarts-table"></v-chart>
+                                                    </div>
+
+                                                    <div class="collapse__right-column">
+
+                                                        <div class="collapse__table">
+                                                            <div class="collapse__table-row">
+                                                                <div class="--col-1">
+                                                                    <table>
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td>Vpip</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>RFR</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+
+                                                                <div class="--col-2">
+                                                                    <table>
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td>WTSD</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>WWSF</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>WSSD</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="collapse__table-col">
+                                                                <div class="--col-1">
+                                                                    <table>
+                                                                        <thead>
+                                                                        <tr>
+                                                                            <th>&nbsp;</th>
+                                                                            <th>flp</th>
+                                                                            <th>trn</th>
+                                                                            <th>rvr</th>
+                                                                        </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td>Agf %</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                                <div class="--col-2">
+                                                                    <table>
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td>F vs bet</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Raise</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                                <div class="--col-3">
+                                                                    <table>
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td>Bet</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Bet/Fold</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                            <td>85<sub>6</sub></td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr :class="{'is-collapse': openID2}">
+                                            <td>
+                                                <button type="button" class="btn-collapse" @click="openID2 = !openID2">Collapse table row</button>
+                                            </td>
+                                            <td>NL25, 9max</td>
+                                            <td>54</td>
+                                            <td>-54551</td>
+                                            <td>-54551</td>
+                                            <td>-4.9</td>
+                                            <td>-4.9</td>
+                                        </tr>
+                                        <tr class="collapse">
+                                            <td colspan="7">
+                                                <div v-if="openID2" class="collapse__wrapper">
+
+                                                    <div class="collapse__left-column">
+                                                        <v-chart :options="optionTable" :auto-resize="true" class="echarts-table"></v-chart>
+                                                    </div>
+
+                                                    <div class="collapse__right-column">
+
+                                                        <div class="collapse__table">
+                                                            <div class="collapse__table-row">
+                                                                <div class="--col-1">
+                                                                    <table>
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td>Vpip</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>RFR</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+
+                                                                <div class="--col-2">
+                                                                    <table>
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td>WTSD</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>WWSF</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>WSSD</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="collapse__table-col">
+                                                                <div class="--col-1">
+                                                                    <table>
+                                                                        <thead>
+                                                                        <tr>
+                                                                            <th>&nbsp;</th>
+                                                                            <th>flp</th>
+                                                                            <th>trn</th>
+                                                                            <th>rvr</th>
+                                                                        </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td>Agf %</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                                <div class="--col-2">
+                                                                    <table>
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td>F vs bet</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Raise</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                                <div class="--col-3">
+                                                                    <table>
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td>Bet</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Bet/Fold</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                            <td>85<sub>6</sub></td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <button type="button" class="btn-collapse">Collapse table row</button>
+                                            </td>
+                                            <td>NL25, 9max</td>
+                                            <td>54358</td>
+                                            <td>12475</td>
+                                            <td>12475</td>
+                                            <td>7.3</td>
+                                            <td>7.3</td>
+                                        </tr>
+                                        <tr class="collapse">
+                                            <td colspan="7">
+                                                asd
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <button type="button" class="btn-collapse">Collapse table row</button>
+                                            </td>
+                                            <td>NL25, 9max</td>
+                                            <td>54</td>
+                                            <td>-54551</td>
+                                            <td>-54551</td>
+                                            <td>-4.9</td>
+                                            <td>-4.9</td>
+                                        </tr>
+                                        <tr class="collapse">
+                                            <td colspan="7">
+                                                asd
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <button type="button" class="btn-collapse">Collapse table row</button>
+                                            </td>
+                                            <td>NL25, 9max</td>
+                                            <td>54358</td>
+                                            <td>12475</td>
+                                            <td>12475</td>
+                                            <td>7.3</td>
+                                            <td>7.3</td>
+                                        </tr>
+                                        <tr class="collapse">
+                                            <td colspan="7">
+                                                asd
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <button type="button" class="btn-collapse">Collapse table row</button>
+                                            </td>
+                                            <td>NL25, 9max</td>
+                                            <td>54</td>
+                                            <td>-54551</td>
+                                            <td>-54551</td>
+                                            <td>-4.9</td>
+                                            <td>-4.9</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="card">
+                            <div class="card__header card__header--title-size-large">
+                                <div>Months</div>
+                                <button class="card__btn-collapse" type="button">Collapse</button>
+                            </div>
+                            <div class="card__body">
+
+                                <div class="grid grid--collapse">
+                                    <table class="grid__table">
+                                        <thead class="grid__table-head">
+                                        <tr>
+                                            <th>&nbsp;</th>
+                                            <th>
+                                                <span>Months</span>
+                                                <span class="sort sort--asc"></span>
+                                            </th>
+                                            <th>
+                                                <span class="only-desktop-inline">Hands</span>
+                                                <span class="only-device-inline">Hnds</span>
+
+                                                <span class="sort sort--desc"></span>
+                                            </th>
+                                            <th>
+                                                <span class="only-desktop-inline">Winnings</span>
+                                                <span class="only-device-inline">WinвЂ™s</span>
+                                                <span class="sort"></span>
+                                            </th>
+                                            <th>
+                                                <span>Win Ev</span>
+                                                <span class="sort"></span>
+                                            </th>
+                                            <th class="text-transform-none">
+                                                <span>bb/<br>100 </span>
+                                                <span class="sort"></span>
+                                            </th>
+                                            <th class="text-transform-none">
+                                                <span>Evbb/<br>100</span>
+                                                <span class="sort"></span></th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody class="grid__table-body">
+                                        <tr :class="{'is-collapse': openID1}">
+                                            <td>
+                                                <button type="button" class="btn-collapse" @click="openID1 = !openID1">Collapse table row</button>
+                                            </td>
+                                            <td>09.2018</td>
+                                            <td>54358</td>
+                                            <td>12475</td>
+                                            <td>12475</td>
+                                            <td>7.3</td>
+                                            <td>7.3</td>
+                                        </tr>
+                                        <tr class="collapse">
+                                            <td colspan="7">
+                                                <div v-if="openID1" class="collapse__wrapper">
+
+                                                    <div class="collapse__left-column">
+                                                        <v-chart :options="optionTable" :auto-resize="true" class="echarts-table"></v-chart>
+                                                    </div>
+
+                                                    <div class="collapse__right-column">
+
+                                                        <div class="collapse__table">
+                                                            <div class="collapse__table-row">
+                                                                <div class="--col-1">
+                                                                    <table>
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td>Vpip</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>RFR</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+
+                                                                <div class="--col-2">
+                                                                    <table>
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td>WTSD</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>WWSF</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>WSSD</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="collapse__table-col">
+                                                                <div class="--col-1">
+                                                                    <table>
+                                                                        <thead>
+                                                                        <tr>
+                                                                            <th>&nbsp;</th>
+                                                                            <th>flp</th>
+                                                                            <th>trn</th>
+                                                                            <th>rvr</th>
+                                                                        </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td>Agf %</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                                <div class="--col-2">
+                                                                    <table>
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td>F vs bet</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Raise</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                                <div class="--col-3">
+                                                                    <table>
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td>Bet</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Bet/Fold</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                            <td>85<sub>6</sub></td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr :class="{'is-collapse': openID2}">
+                                            <td>
+                                                <button type="button" class="btn-collapse" @click="openID2 = !openID2">Collapse table row</button>
+                                            </td>
+                                            <td>08.2018</td>
+                                            <td>54</td>
+                                            <td>-54551</td>
+                                            <td>-54551</td>
+                                            <td>-4.9</td>
+                                            <td>-4.9</td>
+                                        </tr>
+                                        <tr class="collapse">
+                                            <td colspan="7">
+                                                <div v-if="openID2" class="collapse__wrapper">
+
+                                                    <div class="collapse__left-column">
+                                                        <v-chart :options="optionTable" :auto-resize="true" class="echarts-table"></v-chart>
+                                                    </div>
+
+                                                    <div class="collapse__right-column">
+
+                                                        <div class="collapse__table">
+                                                            <div class="collapse__table-row">
+                                                                <div class="--col-1">
+                                                                    <table>
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td>Vpip</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>RFR</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+
+                                                                <div class="--col-2">
+                                                                    <table>
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td>WTSD</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>WWSF</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>WSSD</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="collapse__table-col">
+                                                                <div class="--col-1">
+                                                                    <table>
+                                                                        <thead>
+                                                                        <tr>
+                                                                            <th>&nbsp;</th>
+                                                                            <th>flp</th>
+                                                                            <th>trn</th>
+                                                                            <th>rvr</th>
+                                                                        </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td>Agf %</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                                <div class="--col-2">
+                                                                    <table>
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td>F vs bet</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Raise</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                                <div class="--col-3">
+                                                                    <table>
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td>Bet</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Bet/Fold</td>
+                                                                            <td>85</td>
+                                                                            <td>85</td>
+                                                                            <td>85<sub>6</sub></td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <button type="button" class="btn-collapse">Collapse table row</button>
+                                            </td>
+                                            <td>07.2018</td>
+                                            <td>54358</td>
+                                            <td>12475</td>
+                                            <td>12475</td>
+                                            <td>7.3</td>
+                                            <td>7.3</td>
+                                        </tr>
+                                        <tr class="collapse">
+                                            <td colspan="7">
+                                                asd
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <button type="button" class="btn-collapse">Collapse table row</button>
+                                            </td>
+                                            <td>06.2018</td>
+                                            <td>54</td>
+                                            <td>-54551</td>
+                                            <td>-54551</td>
+                                            <td>-4.9</td>
+                                            <td>-4.9</td>
+                                        </tr>
+                                        <tr class="collapse">
+                                            <td colspan="7">
+                                                asd
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <button type="button" class="btn-collapse">Collapse table row</button>
+                                            </td>
+                                            <td>05.2018</td>
+                                            <td>54358</td>
+                                            <td>12475</td>
+                                            <td>12475</td>
+                                            <td>7.3</td>
+                                            <td>7.3</td>
+                                        </tr>
+                                        <tr class="collapse">
+                                            <td colspan="7">
+                                                asd
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card-wrapper">
+                            <div class="card" data-item="priflop">
+                                <div class="card__header">
+
+                                    <div class="card__header-title">
+                                        Priflop
+                                    </div>
+
+                                    <div class="card__header-control">
+                                        <button class="card__btn-collapse" type="button">Collapse card</button>
+                                    </div>
+                                </div>
+                                <div class="card__body">
+                                    <div class="priflop">
+                                        <div class="priflop__col --col-1">
+                                            <div class="priflop__col --inner-1">
+                                                <table>
+                                                    <thead>
+                                                    <tr>
+                                                        <th>&nbsp;</th>
+                                                        <th>&nbsp;</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>Vpip</td>
+                                                        <td>85</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>RFR</td>
+                                                        <td>85</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="priflop__col --inner-2">
+                                                <table>
+                                                    <thead>
+                                                    <tr>
+                                                        <th>&nbsp;</th>
+                                                        <th>&nbsp;</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>WTSD</td>
+                                                        <td>85</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>WWSF</td>
+                                                        <td>85</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>WSSD</td>
+                                                        <td>85</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                        <div class="priflop__col --col-2">
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <th>&nbsp;</th>
+                                                    <th>&nbsp;</th>
+                                                    <th>IP</th>
+                                                    <th>OPP</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>3bet</td>
+                                                    <td>85</td>
+                                                    <td class="round round__left-top">85</td>
+                                                    <td class="round round__right-top">85</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Fold to 4b</td>
+                                                    <td>85</td>
+                                                    <td class="round round__left-bottom">85</td>
+                                                    <td class="round round__right-bottom">85</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>5bet</td>
+                                                    <td>85</td>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="priflop__col --col-3">
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <th>&nbsp;</th>
+                                                    <th>&nbsp;</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>Limp/Fold</td>
+                                                    <td>85</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+
+                                            <table>
+                                                <tbody>
+                                                <tr>
+                                                    <td>Limp/Raise</td>
+                                                    <td>85</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="priflop__col --col-4">
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <th>&nbsp;</th>
+                                                    <th>Ep</th>
+                                                    <th>Mp</th>
+                                                    <th>Co</th>
+                                                    <th>Bu</th>
+                                                    <th>Sb</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>1st R</td>
+                                                    <td>85</td>
+                                                    <td>85<sub>23</sub></td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Sb</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                    <td>85<sub>14</sub></td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                </tr>
+                                                </tbody>
+
+                                            </table>
+                                        </div>
+                                        <div class="priflop__col --col-5">
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <th>&nbsp;</th>
+                                                    <th>&nbsp;</th>
+                                                    <th>ip</th>
+                                                    <th>oop</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>Fold to 3b</td>
+                                                    <td>85</td>
+                                                    <td class="round round__left-top">85</td>
+                                                    <td class="round round__right-top">85</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>4bet</td>
+                                                    <td>85</td>
+                                                    <td class="round round__left-bottom">85</td>
+                                                    <td class="round round__right-bottom">85</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Fold to 5b</td>
+                                                    <td>85</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="priflop__col --col-6">
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <th>&nbsp;</th>
+                                                    <th>&nbsp;</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>Fold vs Sqz&nbsp;</td>
+                                                    <td>85</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card" data-item="postflop">
+                                <div class="card__header">
+
+                                    <div class="card__header-title">
+                                        Postflop
+                                    </div>
+
+                                    {{ currentTab  }}
+
+                                    <toggle-tab v-model="currentTab" :tabs="toggleTabList" hidden></toggle-tab>
+
+                                </div>
+                                <div class="card__body">
+                                    <div class="postflop">
+                                        <div class="postflop__col --col-1">
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <th>&nbsp;</th>
+                                                    <th>flp</th>
+                                                    <th>trn</th>
+                                                    <th>rvr</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>Agf %</td>
+                                                    <td class="round round__left">85</td>
+                                                    <td class="round">85</td>
+                                                    <td class="round round__right">85</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="postflop__col --col-2">
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <th>&nbsp;</th>
+                                                    <th>flp</th>
+                                                    <th>trn</th>
+                                                    <th>rvr</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>F vs bet</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Raise</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="postflop__col --col-3">
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <th>&nbsp;</th>
+                                                    <th>flp</th>
+                                                    <th>trn</th>
+                                                    <th>rvr</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>Bet</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Bet/Fold</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                    <td>85<sub>6</sub></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="postflop__col --col-4">
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <th>&nbsp;</th>
+                                                    <th>flp</th>
+                                                    <th>trn</th>
+                                                    <th>rvr</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>F vs Cb</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>IP</td>
+                                                    <td class="round round__left-top">85</td>
+                                                    <td class="round">85</td>
+                                                    <td class="round round__right-top">85</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>OOP</td>
+                                                    <td class="round round__left-bottom">85</td>
+                                                    <td class="round">85</td>
+                                                    <td class="round round__right-bottom">85</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="postflop__col --col-5">
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <th>&nbsp;</th>
+                                                    <th>flp</th>
+                                                    <th>trn</th>
+                                                    <th>rvr</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>R vs Cb</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>IP</td>
+                                                    <td class="round round__left-top">85</td>
+                                                    <td class="round">85</td>
+                                                    <td class="round round__right-top">85</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>OOP</td>
+                                                    <td class="round round__left-bottom">85</td>
+                                                    <td class="round">85</td>
+                                                    <td class="round round__right-bottom">85</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="postflop__col --col-6">
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <th>&nbsp;</th>
+                                                    <th>flp</th>
+                                                    <th>trn</th>
+                                                    <th>rvr</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>Cbet</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>IP</td>
+                                                    <td class="round round__left-top">85</td>
+                                                    <td class="round">85</td>
+                                                    <td class="round round__right-top">85</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>OOP</td>
+                                                    <td class="round round__left-bottom">85</td>
+                                                    <td class="round">85</td>
+                                                    <td class="round round__right-bottom">85</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="postflop__col --col-7">
+                                            <table>
+                                                <tbody>
+                                                <tr>
+                                                    <td>Bet ip</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Bet oop</td>
+                                                    <td>&nbsp;</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="postflop__col --col-8">
+                                            <table>
+                                                <tbody>
+                                                <tr>
+                                                    <td>Donk</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>D/Fold</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="postflop__col --col-9">
+                                            <table>
+                                                <tbody>
+                                                <tr>
+                                                    <td>D+bet</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>D+ch/F</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card" data-item="pot">
+                                <div class="card__header">3b pot</div>
+                                <div class="card__body">
+                                    <div class="pot">
+                                        <div class="pot__col --col-1">
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <th>&nbsp;</th>
+                                                    <th>flp</th>
+                                                    <th>trn</th>
+                                                    <th>rvr</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>F vs Cb</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>IP</td>
+                                                    <td class="round round__left-top">85</td>
+                                                    <td class="round">85</td>
+                                                    <td class="round round__right-top">85</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>OOP</td>
+                                                    <td class="round round__left-bottom">85</td>
+                                                    <td class="round">85</td>
+                                                    <td class="round round__right-bottom">85</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="pot__col --col-2">
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <th>&nbsp;</th>
+                                                    <th>flp</th>
+                                                    <th>trn</th>
+                                                    <th>rvr</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>R vs Cb</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>IP</td>
+                                                    <td class="round round__left-top">85</td>
+                                                    <td class="round">85</td>
+                                                    <td class="round round__right-top">85</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>OOP</td>
+                                                    <td class="round round__left-bottom">85</td>
+                                                    <td class="round">85</td>
+                                                    <td class="round round__right-bottom">85</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="pot__col --col-3">
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <th>&nbsp;</th>
+                                                    <th>flp</th>
+                                                    <th>trn</th>
+                                                    <th>rvr</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>Cbet</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>IP</td>
+                                                    <td class="round round__left-top">85</td>
+                                                    <td class="round">85</td>
+                                                    <td class="round round__right-top">85</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>OOP</td>
+                                                    <td class="round round__left-bottom">85</td>
+                                                    <td class="round">85</td>
+                                                    <td class="round round__right-bottom">85</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="pot__col --col-4">
+                                            <table>
+                                                <tbody>
+                                                <tr>
+                                                    <td>Bet ip</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Bet oop</td>
+                                                    <td>&nbsp;</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="pot__col --col-5">
+                                            <table>
+                                                <tbody>
+                                                <tr>
+                                                    <td>Donk</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>D/Fold</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="pot__col --col-6">
+                                            <table>
+                                                <tbody>
+                                                <tr>
+                                                    <td>D+bet</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>D+ch/F</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                    <td>85</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="message">
+                                <form>
+                                    <textarea name="message" rows="6" placeholder="Have any questions or feedback? Send us a message..." tabindex="0"></textarea>
+                                    <div class="tail"></div>
+                                    <button type="submit">
+                                        <span>Send</span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+
+            <div class="center-block">
+
+                <div class="form">
+                    <div class="tab-group tab-group--center">
+                        <label tabindex="0">
+                            <input type="radio" name="check-tab" checked tabindex="-1">
+                            <span>Account</span>
+                        </label>
+                        <label tabindex="0">
+                            <input type="radio" name="check-tab" tabindex="-1">
+                            <span>Settings</span>
+                        </label>
+                        <label tabindex="0">
+                            <input type="radio" name="check-tab" tabindex="-1" disabled>
+                            <span>Price</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form">
+                    <div class="tab-group tab-group--center">
+                        <a href="#" tabindex="0" class="active">
+                            <span>Account</span>
+                        </a>
+                        <a href="#" tabindex="0">
+                            <span>Settings</span>
+                        </a>
+                        <a href="#" tabindex="0" class="disabled">
+                            <span>Price</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="form">
+                    <div class="form__inner">
+                        <div class="form__group-line">
+                            <div class="form__label">Email</div>
+                            <div class="form__value">example@mail.com</div>
+                        </div>
+                        <div class="form__group-line">
+                            <div class="form__label">Subscription</div>
+                            <div class="form__value">up to 200</div>
+                        </div>
+                        <div class="form__group-line">
+                            <div class="form__label">Expire on</div>
+                            <div class="form__value">
+                                24.08.2019
+                                <button type="button" class="btn btn--label" style="margin-top: -4px">
+                                    <span>More info</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form__group-line">
+                            <div class="form__label">Invite code</div>
+                            <div class="form__value">xdkdh76dnvk32</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form">
+                    <form>
+                        <div class="form__title">
+                            Change password
+                        </div>
+                        <div class="form__inner">
+                            <div class="form__group-line">
+                                <label for="current-password" class="form__label">Password</label>
+                                <div class="form__input">
+                                    <input type="password" id="current-password" name="current-password" placeholder="********">
+                                </div>
+                            </div>
+                            <div class="form__group-line">
+                                <label for="new-password" class="form__label">New password</label>
+                                <div class="form__input">
+                                    <input type="password" id="new-password" name="new-password" disabled placeholder="********">
+                                </div>
+                            </div>
+                            <div class="form__group-line">
+                                <label for="confirm-password" class="form__label">Confirm password</label>
+                                <div class="form__input">
+                                    <input type="email" id="confirm-password" name="confirm-password" placeholder="********">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form__footer">
+                            <button type="submit" class="btn btn--small">
+                                <span>Save</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="form">
+                    <form>
+                        <div class="form__inner">
+                            <div class="form__group-line form__group-line--bordered">
+                                <div class="form__label">Theme</div>
+                                <div class="form__value">
+                                    <div class="switch">
+                                        <input type="radio" class="switch__left-check" id="left-check-theme" value="dark" checked name="switch-1">
+                                        <input type="radio" class="switch__right-check" id="right-check-theme" value="light" disabled name="switch-1">
+
+                                        <label for="left-check-theme" class="switch__left-label">dark</label>
+                                        <label for="right-check-theme" class="switch__right-label">light</label>
+                                        <span class="switch__switcher"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form__group-line form__group-line--bordered">
+                                <div class="form__label">Graph</div>
+                                <div class="form__value">
+                                    <div class="switch">
+                                        <input type="radio" class="switch__left-check" id="left-check-graph" value="dark" checked name="switch-2">
+                                        <input type="radio" class="switch__right-check" id="right-check-graph" value="light" name="switch-2">
+                                        <label for="left-check-graph" class="switch__left-label">$$$</label>
+                                        <label for="right-check-graph" class="switch__right-label">bb</label>
+                                        <span class="switch__switcher">
+                                                <span>$</span>
+                                                <span>bb</span>
+                                            </span>
+                                    </div>
+
+                                    <br>
+
+                                    <div class="checkbox-group">
+                                        <label class="checkbox-group__label">
+                                            <input type="checkbox" class="checkbox-group__input" name="checkbox-group-default">
+                                            <span class="checkbox-group__span allinEv">AllinEv</span>
+                                        </label>
+                                        <label class="checkbox-group__label">
+                                            <input type="checkbox" class="checkbox-group__input" name="checkbox-group-default">
+                                            <span class="checkbox-group__span netWon">NetWon</span>
+                                        </label>
+                                        <label class="checkbox-group__label">
+                                            <input type="checkbox" class="checkbox-group__input" name="checkbox-group-default">
+                                            <span class="checkbox-group__span wASd">WASd</span>
+                                        </label>
+                                        <label class="checkbox-group__label">
+                                            <input type="checkbox" class="checkbox-group__input" name="checkbox-group-default">
+                                            <span class="checkbox-group__span wWsd">WWsd</span>
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="form__group-line form__group-line--bordered">
+                                <div class="form__label">Default site</div>
+                                <div class="form__value">
+                                    <div class="switch-btn">
+                                        <label class="switch-btn__label">
+                                            <input type="radio" class="switch-btn__input" name="switch-btn-default">
+                                            <span class="switch-btn__span">PS</span>
+                                        </label>
+                                        <label class="switch-btn__label">
+                                            <input type="radio" class="switch-btn__input" name="switch-btn-default">
+                                            <span class="switch-btn__span">IP</span>
+                                        </label>
+                                        <label class="switch-btn__label">
+                                            <input type="radio" class="switch-btn__input" name="switch-btn-default">
+                                            <span class="switch-btn__span">CH</span>
+                                        </label>
+                                        <label class="switch-btn__label">
+                                            <input type="radio" class="switch-btn__input" name="switch-btn-default">
+                                            <span class="switch-btn__span">WPN</span>
+                                        </label>
+                                        <label class="switch-btn__label">
+                                            <input type="radio" class="switch-btn__input" name="switch-btn-default" checked>
+                                            <span class="switch-btn__span">All</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form__group-line form__group-line--bordered">
+                                <div class="form__label">Period</div>
+                                <div class="form__value">
+                                    <div class="switch-btn">
+                                        <label class="switch-btn__label">
+                                            <input type="radio" class="switch-btn__input" name="switch-btn-period">
+                                            <span class="switch-btn__span">This</span>
+                                        </label>
+                                        <label class="switch-btn__label">
+                                            <input type="radio" class="switch-btn__input" name="switch-btn-period">
+                                            <span class="switch-btn__span">3M</span>
+                                        </label>
+                                        <label class="switch-btn__label">
+                                            <input type="radio" class="switch-btn__input" name="switch-btn-period">
+                                            <span class="switch-btn__span">6M</span>
+                                        </label>
+                                        <label class="switch-btn__label">
+                                            <input type="radio" class="switch-btn__input" name="switch-btn-period">
+                                            <span class="switch-btn__span">12M</span>
+                                        </label>
+                                        <label class="switch-btn__label">
+                                            <input type="radio" class="switch-btn__input" name="switch-btn-period" checked>
+                                            <span class="switch-btn__span">All</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form__group-line form__group-line--bordered">
+                                <div class="form__label">Table size</div>
+                                <div class="form__value">
+                                    <div class="switch-btn">
+                                        <label class="switch-btn__label">
+                                            <input type="radio" class="switch-btn__input" name="switch-btn-size">
+                                            <span class="switch-btn__span">SH</span>
+                                        </label>
+                                        <label class="switch-btn__label">
+                                            <input type="radio" class="switch-btn__input" name="switch-btn-size">
+                                            <span class="switch-btn__span">FR</span>
+                                        </label>
+                                        <label class="switch-btn__label">
+                                            <input type="radio" class="switch-btn__input" name="switch-btn-size">
+                                            <span class="switch-btn__span">HU</span>
+                                        </label>
+                                        <label class="switch-btn__label">
+                                            <input type="radio" class="switch-btn__input" name="switch-btn-size" checked>
+                                            <span class="switch-btn__span">All</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form__footer">
+                            <button type="submit" class="btn btn--small">
+                                <span>Save</span>
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+
+                <div class="form">
+                    <div class="tab-group tab-group--center">
+                        <label tabindex="0">
+                            <input type="radio" name="check-tab" checked tabindex="-1">
+                            <span>Sign in</span>
+                        </label>
+                        <label tabindex="0">
+                            <input type="radio" name="check-tab" tabindex="-1">
+                            <span>Sign up</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form">
+                    <div class="form__inner form__inner--center">
+                        <form>
+                            <div class="form__group">
+                                <label for="sign-in-email" class="form__label">Email</label>
+                                <input type="email" id="sign-in-email" name="email" class="form__input" placeholder="example@mail.com">
+                            </div>
+                            <div class="form__group">
+                                <div class="form__row">
+                                    <label for="sign-in-password" class="form__label">Password</label>
+                                    <a href="javascript:void(0)">Forgot password?</a>
+                                </div>
+                                <input type="password" id="sign-in-password" class="form__input" name="password" placeholder="********">
+                            </div>
+                            <div class="form__footer">
+                                <button type="submit" class="btn">
+                                    <span>Login</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="form">
+                    <div class="form__inner form__inner--center">
+                        <form>
+                            <div class="form__group">
+                                <div class="form__row">
+                                    <label for="reset-email" class="form__label">Password reset</label>
+                                    <a href="#">Sign Up?</a>
+                                </div>
+                                <input type="email" id="reset-email" class="form__input" name="email" placeholder="example@mail.com">
+                            </div>
+
+                            <div class="form__footer">
+                                <button type="submit" class="btn">
+                                    <span>Send</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="form">
+                    <div class="form__inner form__inner--center">
+                        <form>
+                            <div class="form__group">
+                                <label for="sign-up-email" class="form__label requred">Email</label>
+                                <input type="email" id="sign-up-email" class="form__input" name="email" placeholder="example@mail.com">
+                            </div>
+                            <div class="form__group">
+                                <label for="sign-up-invide" class="requred form__label">Invade code</label>
+                                <input type="text" id="sign-up-invide" class="form__input" name="invide">
+                            </div>
+                            <div class="form__group">
+                                <label for="sign-up-password" class="requred form__label">Password</label>
+                                <input type="password" id="sign-up-password" class="form__input" name="password" placeholder="********">
+                            </div>
+                            <div class="form__group">
+                                <label for="sign-up-confirm" class="requred form__label">Confirm password</label>
+                                <input type="password" id="sign-up-confirm" class="form__input" name="confirm" placeholder="********">
+                            </div>
+
+                            <div class="form__footer">
+                                <button type="submit" class="btn">
+                                    <span>Sign up</span>
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="center-block">
+                <div class="text-content">
+                    <h1>Welcome to StatBox</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras rhoncus cursus neque nec scelerisque. Curabitur rutrum
+                        consectetur eros, non mattis massa condimentum a. Maecenas ligula neque, congue id volutpat id, condimentum et lacus.
+                        Sed sed nisi a ante aliquam euismod eget a tellus. Cras sodales hendrerit tellus, placerat tincidunt lacus dignissim
+                        et. Vestibulum interdum leo at blandit rutrum. Aenean a gravida ipsum, id sollicitudin diam. Curabitur velit turpis,
+                        rutrum nec convallis a, faucibus eget leo.</p>
+
+                    <h2>Subtitle</h2>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras rhoncus cursus neque nec scelerisque. Curabitur rutrum
+                        consectetur eros, non mattis massa condimentum a. Maecenas ligula neque, congue id volutpat id, condimentum et
+                        lacus.
+                        Sed sed nisi a ante aliquam euismod eget a tellus. Cras sodales hendrerit tellus, placerat tincidunt lacus
+                        dignissim
+                        et. Vestibulum interdum leo at blandit rutrum. Aenean a gravida ipsum, id sollicitudin diam. Curabitur velit
+                        turpis,
+                        rutrum nec convallis a, faucibus eget leo.</p>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras rhoncus cursus neque nec scelerisque. Curabitur rutrum
+                        consectetur eros, non mattis massa condimentum a. Maecenas ligula neque, congue id volutpat id, condimentum et
+                        lacus.
+                        Sed sed nisi a ante aliquam euismod eget a tellus. Cras sodales hendrerit tellus, placerat tincidunt lacus
+                        dignissim
+                        et. Vestibulum interdum leo at blandit rutrum. Aenean a gravida ipsum, id sollicitudin diam. Curabitur velit
+                        turpis,
+                        rutrum nec convallis a, faucibus eget leo.</p>
+                </div>
+            </div>
+
+            <br>
+            <hr>
+            <br>
+
+            <div class="text-content text-content--small">
+                <div class="row">
+                    <div class="col">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras rhoncus cursus neque nec scelerisque. Curabitur rutrum
+                            consectetur eros, non mattis massa condimentum a. Maecenas ligula neque, congue id volutpat id, condimentum et lacus.
+                            Sed sed nisi a ante aliquam euismod eget a tellus. Cras sodales hendrerit tellus, placerat tincidunt lacus dignissim
+                            et. Vestibulum interdum leo at blandit rutrum. Aenean a gravida ipsum, id sollicitudin diam. Curabitur velit turpis,
+                            rutrum nec convallis a, faucibus eget leo.</p>
+                    </div>
+
+                    <div class="col">
+                        <div class="message">
+                            <form>
+                                <textarea name="message" rows="2" placeholder="Have any questions or feedback? Send us a message..." tabindex="0"></textarea>
+                                <div class="tail"></div>
+                                <button type="submit">
+                                    <span>Send</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="page-footer">
+        <div class="page-footer__inner">
+            <div class="page-footer__content">
+                StatBOX 2018
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+<script src="js/vue-echarts.js"></script>
+<script src="js/vue.js"></script>
+<script src="js/element-resize-detector.min.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+
+</html>
